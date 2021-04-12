@@ -1,12 +1,11 @@
+import Collapsible from 'react-collapsible';
 import {useEffect, useState} from 'react';
 import './App.css';
+const BASE_URL = 'http://localhost:3001/api/plants';
 
 export default function App() {
   const [state, setState] = useState({
-    plants: [{ 
-      name: 'Pink Blush Aloe',
-      sharing: true,
-    }],
+    plants: [{}],
     newPlant: {
       name:"",
       sharing: false,
@@ -14,8 +13,6 @@ export default function App() {
   });
 
   async function getAppData() {
-    const BASE_URL = 'http://localhost3001/api/plants';
-
     const plants = await fetch(BASE_URL).then(res => res.json());
     setState((prevState) => ({
       ...prevState,
@@ -32,7 +29,6 @@ export default function App() {
 
   async function addPlant(e) {
     e.preventDefault();
-    const BASE_URL = 'http://localhost:3001/api/plants';
     const plant = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
@@ -53,30 +49,39 @@ export default function App() {
   };
 
   function handleChange(e) {
-    setState((prevState => ({
+    setState((prevState) => ({
       ...prevState,
       newPlant: {
         ...prevState.newPlant,
         [e.target.name]: e.target.value
       }
-    })))
+    }))
   };
 
   return (
     <div className="App">
       <h1>Plant Inventory</h1>
-      {state.plants.map((p) => (
+      {state.plants.map((p, idx) => (
         <article key={p.name}>
-          <div>{p.name}</div> <div>{p.sharing}</div>
+          <Collapsible trigger={p.name}>
+           {p.sharing ? 'Yes' : 'No'}
+           <a href="#">Edit</a>
+           </Collapsible>
         </article>
       ))}
       <div className="newPlantForm">
         <form onSubmit={addPlant}>
           <label>
             <span>Plant Name</span>
-            <input name="plant" value={state.newPlant.name} onChange={handleChange} />
-            <button>Add Plant</button>
+            <input name="name" value={state.newPlant.name}  onChange={handleChange} />
           </label>
+          <label>Are you sharing this plant?
+            <select name="sharing" value={state.newPlant.sharing} onChange={handleChange}>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </label>
+          <button>Add Plant</button>
         </form>
       </div>
     </div>
