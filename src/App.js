@@ -27,6 +27,13 @@ export default function App() {
     }))
   }, []);
 
+
+  async function deletePlant(id) {
+    await fetch(`${BASE_URL}/${id}`, {
+      method: 'DELETE',
+    });
+  };
+
   async function addPlant(e) {
     e.preventDefault();
     const plant = await fetch(BASE_URL, {
@@ -66,6 +73,7 @@ export default function App() {
           <Collapsible trigger={p.name}>
            {p.sharing ? 'Yes' : 'No'}
            <a href="#">Edit</a>
+           <a href="http://localhost:3000" className="deleteButton" onClick={() => deletePlant(p._id)}>Delete</a>
            </Collapsible>
         </article>
       ))}
