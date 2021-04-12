@@ -72,7 +72,7 @@ export default function App() {
         <article key={p.name}>
           <Collapsible trigger={p.name}>
            {p.sharing ? 'Yes' : 'No'}
-           <a href="#">Edit</a>
+           <a href="#">View Journal</a>
            <a href="http://localhost:3000" className="deleteButton" onClick={() => deletePlant(p._id)}>Delete</a>
            </Collapsible>
         </article>
