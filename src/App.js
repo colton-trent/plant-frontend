@@ -1,4 +1,5 @@
 import Collapsible from 'react-collapsible';
+
 import {useEffect, useState} from 'react';
 import './App.css';
 const BASE_URL = 'http://localhost:3001/api/plants';
@@ -27,25 +28,19 @@ export default function App() {
     }))
   }, []);
 
-
-  async function deletePlant(id) {
-    await fetch(`${BASE_URL}/${id}`, {
-      method: 'DELETE',
-    });
-  };
-
   async function addPlant(e) {
     e.preventDefault();
-    const plant = await fetch(BASE_URL, {
+    const plants = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
         'Content-type': 'Application/json'
       },
       body: JSON.stringify(state.newPlant)
     }).then(res => res.json());
-
+    
     setState((prevState) => ({
-      plants: [...prevState.plants, plant],
+      ...prevState,
+      plants,
       newPlant: {
         name: '',
         acquired: '',
@@ -54,7 +49,7 @@ export default function App() {
       },
     }));
   };
-
+  
   function handleChange(e) {
     setState((prevState) => ({
       ...prevState,
@@ -62,6 +57,17 @@ export default function App() {
         ...prevState.newPlant,
         [e.target.name]: e.target.value
       }
+    }))
+  };
+  
+  async function deletePlant(id) {
+    const plants = await fetch(`${BASE_URL}/${id}`, {
+      method: 'DELETE',
+    }).then((res) => res.json());
+
+    setState(prevState => ({
+      ...prevState,
+      plants,
     }))
   };
 
@@ -73,7 +79,7 @@ export default function App() {
           <Collapsible trigger={p.name}>
            {p.sharing ? 'Yes' : 'No'}
            <a href="#">View Journal</a>
-           <a href="http://localhost:3000" className="deleteButton" onClick={() => deletePlant(p._id)}>Delete</a>
+           <div onClick={() => deletePlant(p._id)}>{"Delete"}</div>
            </Collapsible>
         </article>
       ))}
