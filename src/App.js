@@ -1,9 +1,7 @@
 import Collapsible from 'react-collapsible';
-
 import {useEffect, useState} from 'react';
 import './App.css';
 const BASE_URL = 'http://localhost:3001/api/plants';
-
 export default function App() {
   const [state, setState] = useState({
     plants: [{}],
@@ -12,7 +10,6 @@ export default function App() {
       sharing: false,
     },
   });
-
   async function getAppData() {
     const plants = await fetch(BASE_URL).then(res => res.json());
     setState((prevState) => ({
@@ -20,27 +17,28 @@ export default function App() {
       plants,
     }));
   };
-
   useEffect(() => {
     getAppData();
     setState(prevState => ({
       ...prevState,
     }))
   }, []);
-
+  async function deletePlant(id) {
+    await fetch(`${BASE_URL}/${id}`, {
+      method: 'DELETE',
+    });
+  };
   async function addPlant(e) {
     e.preventDefault();
-    const plants = await fetch(BASE_URL, {
+    const plant = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
         'Content-type': 'Application/json'
       },
       body: JSON.stringify(state.newPlant)
     }).then(res => res.json());
-    
     setState((prevState) => ({
-      ...prevState,
-      plants,
+      plants: [...prevState.plants, plant],
       newPlant: {
         name: '',
         acquired: '',
@@ -49,7 +47,6 @@ export default function App() {
       },
     }));
   };
-  
   function handleChange(e) {
     setState((prevState) => ({
       ...prevState,
@@ -59,18 +56,6 @@ export default function App() {
       }
     }))
   };
-  
-  async function deletePlant(id) {
-    const plants = await fetch(`${BASE_URL}/${id}`, {
-      method: 'DELETE',
-    }).then((res) => res.json());
-
-    setState(prevState => ({
-      ...prevState,
-      plants,
-    }))
-  };
-
   return (
     <div className="App">
       <h1>Plant Inventory</h1>
@@ -78,8 +63,9 @@ export default function App() {
         <article key={p.name}>
           <Collapsible trigger={p.name}>
            {p.sharing ? 'Yes' : 'No'}
+           <a href="#">Edit</a>
            <a href="#">View Journal</a>
-           <div onClick={() => deletePlant(p._id)}>{"Delete"}</div>
+           <a href="http://localhost:3000" className="deleteButton" onClick={() => deletePlant(p._id)}>Delete</a>
            </Collapsible>
         </article>
       ))}
