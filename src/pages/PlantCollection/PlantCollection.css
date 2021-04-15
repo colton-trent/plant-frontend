@@ -1,5 +1,5 @@
 body {
-    background-image: url('./plant-background.jpeg')
+    background-image: image-url('./plant-background.jpeg')
 };
 
 .PlantInventory {

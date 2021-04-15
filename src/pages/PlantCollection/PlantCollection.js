@@ -16,7 +16,7 @@ const PlantCollection = (props) => {
                 <hr className="topRule"/>
                 <Collapsible trigger={p.name}>
                 <PlantInfo props={p}/> 
-                <a href="http://localhost:3000" className="deleteButton" onClick={() => props.deletePlant(p._id)}>Delete</a>
+                <a href="https://ctrent-plant-app.herokuapp.com/" className="deleteButton" onClick={() => props.deletePlant(p._id)}>Delete</a>
                 </Collapsible>
             </article>
             ))}
