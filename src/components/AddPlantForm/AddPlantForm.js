@@ -1,6 +1,9 @@
+import './AddPlantForm.css';
+
 const AddPlantForm = (props) => {
     return (
         <div className="newPlantForm">
+            <hr className="bottomRule"/>
             <form onSubmit={props.addPlant}>
                 <label>
                     <span>Plant Name</span>
@@ -14,7 +17,6 @@ const AddPlantForm = (props) => {
                 </label>
                 <button>Add Plant</button>
             </form>
-            <a href="/edit/:id">Somewhere</a>
         </div>
     )
 };

@@ -1,0 +1,68 @@
+.Collapsible__contentOuter {
+    background-color: rgba(81, 126, 55, 0.815);
+    color: white;
+    font-size: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.PlantInventory {
+    border-radius: 8px;
+}
+
+.Collapsible__trigger{
+    color: white;
+}
+
+header {
+    margin-top: -21px;
+    color: white;
+    background-color: rgba(105, 76, 53, 0.911);
+    border-radius: 8px;
+}
+
+nav {
+    color: white;
+    background-color: rgba(182, 139, 103, 0.911);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+a {
+    color: white;
+}
+
+.PlantLink {
+    margin: 25px;
+}
+
+.deleteButton :visited{
+    color: white;
+}
+
+.topRule {
+   border: 2px dotted green
+}
+
+.bottomRule {
+    border: 2px solid rgb(49, 53, 45);
+}
+
+input {
+    background-color: rgba(140, 240, 153, 0.651);
+    border-radius: 6px;
+    margin-right: 20px;
+}
+
+select {
+    background-color: rgba(204, 247, 210, 0.651);
+    color: rgb(22, 21, 21);
+    margin: 5px;
+}
+
+button {
+    background-color: rgba(146, 130, 76, 0.651);
+    color: white;
+    margin: 10px;
+    border-radius: 8px;
+}

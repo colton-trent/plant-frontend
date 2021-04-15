@@ -1,16 +1,21 @@
 import Collapsible from 'react-collapsible';
 import Header from '../../components/Header/Header';
-import CollapsibleInfo from '../../components/CollapsibleInfo/CollapsibleInfo';
-import AddPlantForm from '../../components/AddPlantForm/AddPlantForm'
+import PlantInfo from '../../components/PlantInfo/PlantInfo';
+import AddPlantForm from '../../components/AddPlantForm/AddPlantForm';
+import './PlantCollection.css'
+
+
+//collapsibles disrupt the live delete
 
 const PlantCollection = (props) => {
     return (
-        <div>
-            <h1>Plant Inventory</h1>
+        <div className="PlantInventory">
+            <h2>Plant Inventory</h2>
             {props.state.plants.map((p, idx) => (
             <article key={p.name}>
+                <hr className="topRule"/>
                 <Collapsible trigger={p.name}>
-                <CollapsibleInfo props={p}/>
+                <PlantInfo props={p}/> 
                 <a href="http://localhost:3000" className="deleteButton" onClick={() => props.deletePlant(p._id)}>Delete</a>
                 </Collapsible>
             </article>

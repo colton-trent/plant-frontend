@@ -6,6 +6,7 @@ import EditPage from './pages/EditPage/EditPage';
 import { Route, Switch } from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import './App.css';
+import './styles.css';
 const BASE_URL = 'http://localhost:3001/api/plants';
 
 
@@ -37,9 +38,13 @@ export default function App() {
   }, []);
 
   async function deletePlant(id) {
-    await fetch(`${BASE_URL}/${id}`, {
+    const plants = await fetch(`${BASE_URL}/${id}`, {
       method: 'DELETE',
-    });
+    }).then(res => res.json());
+    setState(prevState => ({
+      ...prevState,
+      plants,
+    }));
   };
 
   async function addPlant(e) {
@@ -63,6 +68,10 @@ export default function App() {
     }));
   };
 
+  function editPlantInfo(id) {
+    console.log(id)
+  }
+
   function handleChange(e) {
     setState((prevState) => ({
       ...prevState,
@@ -83,10 +92,14 @@ export default function App() {
           deletePlant = {deletePlant}
           addPlant = {addPlant}
           handleChange = {handleChange}
+          deletePlant = {deletePlant}
           />
         }/>
-      <Route exact path="/edit/id" render = { () => 
-        <EditPage/>
+      <Route exact path="/edit" render = { (props) => 
+        <EditPage
+        state={state}
+        handleChange = {handleChange}
+        editPlantInfo = {editPlantInfo}/>
       }/>
       </Switch>
     </div>
