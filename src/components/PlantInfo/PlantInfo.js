@@ -8,7 +8,8 @@ const PlantInfo = (props) => {
            {props.props.sharing ? ' Yes' : ' No'}</p>
             <p>{props.props.amount}</p>
             <div className="plantLinks">
-                <Link to={`/edit`}
+                <Link to={`https://ctrent-plant-frontend.netlify.app
+/edit`}
                 plantData={props.props}className="PlantLink">Edit</Link>
                 <a href="#" className="PlantLink">View Journal</a>
             </div>
