@@ -1,5 +1,4 @@
 import Collapsible from 'react-collapsible';
-import Header from '../../components/Header/Header';
 import PlantInfo from '../../components/PlantInfo/PlantInfo';
 import AddPlantForm from '../../components/AddPlantForm/AddPlantForm';
 import './PlantCollection.css'

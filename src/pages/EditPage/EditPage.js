@@ -1,5 +1,5 @@
-import Header from '../../components/Header/Header';
-import './EditPage.css'
+
+import './EditPage.css';
 
 const EditPage = (props) =>  {
     return (
