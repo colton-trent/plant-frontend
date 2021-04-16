@@ -94,8 +94,7 @@ export default function App() {
           handleChange = {handleChange}
           />
         }/>
-      <Route exact path="https://ctrent-plant-frontend.netlify.app
-/edit" render = { (props) => 
+      <Route exact path="/edit" render = { (props) => 
         <EditPage
         state={state}
         handleChange = {handleChange}
