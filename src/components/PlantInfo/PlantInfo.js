@@ -10,7 +10,7 @@ const PlantInfo = (props) => {
             <div className="plantLinks">
                 <Link to={`/edit`}
                 plantData={props.props}className="PlantLink">Edit</Link>
-                <a href="#" className="PlantLink">View Journal</a>
+                <a href="" className="PlantLink">View Journal</a>
             </div>
         </div>
     )
