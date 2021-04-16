@@ -92,12 +92,12 @@ export default function App() {
           deletePlant = {deletePlant}
           addPlant = {addPlant}
           handleChange = {handleChange}
-          deletePlant = {deletePlant}
           />
         }/>
       <Route exact path="/edit" render = { (props) => 
         <EditPage
         state={state}
+        handleChange = {handleChange}
         editPlantInfo = {editPlantInfo}/>
       }/>
       </Switch>
