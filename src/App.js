@@ -18,7 +18,7 @@ export default function App() {
       acquired: '',
       sharing: false,
       imageUrl: '',
-      amount: 1,
+      amount: 1,handleChange
     },
   });
 
