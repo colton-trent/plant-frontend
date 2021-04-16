@@ -98,7 +98,6 @@ export default function App() {
       <Route exact path="/edit" render = { (props) => 
         <EditPage
         state={state}
-        handleChange = {handleChange}
         editPlantInfo = {editPlantInfo}/>
       }/>
       </Switch>
