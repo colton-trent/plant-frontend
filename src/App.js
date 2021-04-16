@@ -7,7 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import './App.css';
 import './styles.css';
-const BASE_URL = 'http://localhost:3001/api/plants';
+const BASE_URL = 'https://ctrent-plant-app.herokuapp.com/api/plants';
 
 
 export default function App() {
